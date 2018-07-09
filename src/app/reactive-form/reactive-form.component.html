@@ -1,0 +1,38 @@
+ <form [formGroup]="reactiveForm" (ngSubmit)="onSubmitProject()">
+ 
+  <div class="form-group">
+      <div class="form-group">
+          <label for="name">Project Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="projectName"
+            class="form-control">
+        </div>
+        <p *ngIf="reactiveForm.get('projectName').errors  && reactiveForm.get('projectName').errors.invalidProjectName  && reactiveForm.get('projectName').dirty "> {{reactiveForm.get('projectName').value}} name is not allowed. </p>
+
+  </div>
+  <div class="form-group">
+      <label for="email">Mail</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control">
+        <p *ngIf="reactiveForm.get('email').errors   && reactiveForm.get('email').dirty ">  Please enter valid Email Id. </p>
+
+  </div>
+  <div class="form-group">
+      <label for="status">Projectstatus</label>
+      <select
+        id="status"
+        formControlName="projectStatus"
+        class="form-control">
+        <option value="stable">Stable</option>
+        <option value="critical">Critical</option>
+        <option value="finished">Finished</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" [disabled]="!reactiveForm.valid" type="submit">Create Project</button>
+</form>  
+ 
